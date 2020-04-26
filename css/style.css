@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
 
     background: #f2f2f2;
     background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #ffffff 26%, #f5f5f5 59%, #f5f5f5 77%, #cecece 100%);
@@ -45,6 +45,37 @@ html.dark, body.dark {
     background: -ms-radial-gradient(center, ellipse cover,  #000000 0%,#000000 40%,#000000 100%);
     background: radial-gradient(ellipse at center,  #000000 0%,#000000 40%,#000000 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#283442', endColorstr='#000d19',GradientType=1 );
+} */
+
+html, body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+html.dark, body.dark {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(42, 124, 83) 70%, rgb(129, 241, 24) 100%);
+}
+
+html.dark1, body.dark1 {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(42, 54, 124) 70%, rgb(24, 46, 241) 100%);
+}
+
+html.dark2, body.dark2 {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(118, 124, 42) 70%, rgb(208, 241, 24) 100%);
+}
+
+html.dark3, body.dark3 {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(124, 61, 42) 70%, rgb(241, 67, 24) 100%);
+}
+
+html.dark4, body.dark4 {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(124, 42, 113) 70%, rgb(241, 24, 223) 100%);
+}
+
+html.dark5, body.dark5 {
+    background: blue;
 }
 
 #container {

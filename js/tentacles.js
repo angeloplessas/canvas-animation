@@ -23,7 +23,7 @@
 
 var settings = {
   interactive: false,
-  darkTheme: true,
+  darkTheme: false,
   headRadius: 0,
   thickness: 18,
   tentacles: 40,
@@ -37,7 +37,7 @@ var settings = {
 
 var imgWidth = $('#images').width()/2;
 var imgHeight = $('#images').height()/2;
-console.log(imgWidth, imgHeight);
+// console.log(imgWidth, imgHeight);
 
 var cx = $('#container').width()/2;
 var cy = $('#container').height()/2;
@@ -534,7 +534,7 @@ function onThemeChanged( dark ) {
   settings.colour.s = 0.9;
   settings.colour.v = dark ? 0.7 : 0.7;
 
-  document.body.className = dark ? 'dark' : '';
+  // document.body.className = dark ? 'dark' : '';
 
   colourGUI.updateDisplay();
 }
@@ -614,7 +614,7 @@ gui.add( settings, 'wind' ).min( -3.0 ).max( 3.0 ).onChange( onSettingsChanged )
 gui.add( settings, 'friction' ).min( 0.0 ).max( 1.0 ).onChange( onSettingsChanged );
 
 var colourGUI = gui.addColor( settings, 'colour' );
-gui.add( settings, 'darkTheme' ).onChange( onThemeChanged );
+// gui.add( settings, 'darkTheme' ).onChange( onThemeChanged );
 gui.add( settings, 'pulse' );
 
 var interactiveGUI = gui.add( settings, 'interactive' );
@@ -622,7 +622,7 @@ gui.add( sketch, 'autoclear' );
 gui.add( sketch, 'export' );
 gui.close();
 
-onThemeChanged( true );
+// onThemeChanged( true );
 
 var sound_effect = true;
 
@@ -633,8 +633,8 @@ function audioplay_foot() {
     soundFile_foot.play();
 
     setTimeout(function(){
-      var soundFile_something = document.getElementById("Something");
-      soundFile_something.play();
+      // var soundFile_something = document.getElementById("Something");
+      // soundFile_something.play();
     }, 500);
     sound_effect = true;
   }  
@@ -872,6 +872,7 @@ function loadimg_bloodandcircle(imgname, height, width, pos, divname, zindex) {
   imagefile.style.padding = "0";
   imagefile.style.position = pos;
   imagefile.style.zIndex= zindex;
+  imagefile.style.zoom= "150%";
   let container = document.getElementById(divname);
   container.appendChild(imagefile);
 }
@@ -879,7 +880,7 @@ function loadimg_bloodandcircle(imgname, height, width, pos, divname, zindex) {
 creativediv_shoulder("blood_div", 3); 
 setposition("blood_div", 105, 265);
 loadimg_bloodandcircle("blood", 70, 35, "relative", "blood_div", 0);
-setposition("blood0", -117, -95);
+setposition("blood0", -85, -75);
 document.getElementById("blood0").style.visibility = 'hidden';
 
 var py0 = 11;
@@ -933,8 +934,32 @@ var randCircle = [
 ];
 
 var randballnum;
-
+var stage = 1;
 $('body').click(function(){
+  stage += 1;
+  console.log("stage = ",stage);
+  switch (stage % 5) {
+    case 1:
+        $("#body").removeClass("dark");
+        $("#body").addClass("dark1");
+        break;
+    case 2:
+        $("#body").removeClass("dark1");
+        $("#body").addClass("dark2");
+        break;
+    case 3:
+        $("#body").removeClass("dark2");
+        $("#body").addClass("dark3");
+        break;
+    case 4:
+        $("#body").removeClass("dark3");
+        $("#body").addClass("dark4");
+        break;
+    case 0:
+        $("#body").removeClass("dark4");
+        $("#body").addClass("dark");
+        break;
+  }
   // console.log('clicked');
   if ( demo ) {
 
@@ -964,13 +989,13 @@ $('body').click(function(){
         clearInterval(falling);
         setposition("blood0", -7, 11);
         document.getElementById("blood0").style.visibility = "hidden";
-        py0 = -95;
+        py0 = -75;
         creatflw(cntx);
         return;   
       }
       document.getElementById("blood0").style.visibility = "visible";        
       py0 += 10;        
-      setposition("blood0", -117, py0);                  
+      setposition("blood0", -85, py0);                  
     }, 1000 / 50 );     
 
     audioplay_foot();
@@ -1030,8 +1055,8 @@ $('body').click(function(){
         fallingball(currentballid, cntballindex, cntballx, cntbally);
         cntballindex += 1;
       }, 4000);      
-      console.log("cntballid = " + currentballid);
-      console.log("cntballx = " + cntballx + " , cntbally = " + cntbally);
+      // console.log("cntballid = " + currentballid);
+      // console.log("cntballx = " + cntballx + " , cntbally = " + cntbally);
 
     }, 2000);
     
@@ -1148,7 +1173,7 @@ function creatflw(cntx) {
 
   audioplay_flower(indx);
 
-  var cntflwx = cntx, cntflwy = $('#container').height() - 5;
+  var cntflwx = cntx * 10 / 20, cntflwy = $('#container').height() * 10 / 20;
 
   var imagediv = document.createElement("div");
   imagediv.id ="flower_div" +  flwinx;
@@ -1156,7 +1181,7 @@ function creatflw(cntx) {
   imagediv.style.margin = "0";
   imagediv.style.padding = "0";
   imagediv.style.zIndex= "10";
-  imagediv.style.zoom= "100%";
+  imagediv.style.zoom= "200%";
   imagediv.style.overflow = "visible";
   let container = document.getElementById("container");
   container.appendChild(imagediv);
@@ -1309,7 +1334,7 @@ function creatflw(cntx) {
     case 3:
       setposition("flower_div" +  flwinx + "_" + "leaff3", -135, -400);
       setposition("flower_div" +  flwinx + "_" + "stick3", -10, -520);
-      setposition("flower_div" +  flwinx + "_" + "flower3", -150, -680);
+      setposition("flower_div" +  flwinx + "_" + "flower3", -150, -778);
       break;
     case 4:
       setposition("flower_div" +  flwinx + "_" + "leaff4", -135, -400);
@@ -1358,7 +1383,7 @@ function creatflw(cntx) {
     }
     for(var i = 0; i < flowerimg.length; i++){
       var idname = "flower_div" +  flwinx + "_" + flowerimg[i] + indx;
-      console.log(idname);
+      // console.log(idname);
       document.getElementById(idname).style.zoom = zoomsize + "%";
     }       
     zoomsize += 0.15; 
